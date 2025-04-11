@@ -1,0 +1,72 @@
+[
+  {
+    "id": "p1",
+    "name": "Smartphone Pro",
+    "sku": "SP-001",
+    "category": "Electronics",
+    "price": 999.99,
+    "stock": 50,
+    "username": "unibafzaal@gmail.com",
+    "imageUrl": "https://example.com/banana.jpg"
+  },
+  {
+    "id": "p2",
+    "name": "Wireless Headphones",
+    "sku": "WH-002",
+    "category": "Audio",
+    "price": 199.99,
+    "stock": 120,
+    "username": "unibafzaal@gmail.com",
+    "imageUrl": "https://example.com/banana.jpg"
+  },
+  {
+    "id": "p3",
+    "name": "Smart Watch",
+    "sku": "SW-003",
+    "category": "Wearables",
+    "price": 299.99,
+    "stock": 75,
+    "username": "unibafzaal@gmail.com",
+    "imageUrl": "https://example.com/banana.jpg"
+  },
+  {
+    "id": "p4",
+    "name": "Bluetooth Speaker",
+    "sku": "BS-004",
+    "category": "Audio",
+    "price": 149.99,
+    "stock": 200,
+    "username": "unibafzaal@gmail.com",
+    "imageUrl": "https://example.com/banana.jpg"
+  },
+  {
+    "id": "p5",
+    "name": "Laptop 15\"",
+    "sku": "LP-005",
+    "category": "Electronics",
+    "price": 899.99,
+    "stock": 30,
+    "username": "unibafzaal@gmail.com",
+    "imageUrl": "https://example.com/banana.jpg"
+  },
+  {
+    "id": "p6",
+    "name": "Gaming Mouse",
+    "sku": "GM-006",
+    "category": "Accessories",
+    "price": 49.99,
+    "stock": 150,
+    "username": "unibafzaal@gmail.com",
+    "imageUrl": "https://example.com/banana.jpg"
+  },
+  {
+    "id": "p7",
+    "name": "4K Smart TV",
+    "sku": "TV-007",
+    "category": "Electronics",
+    "price": 799.99,
+    "stock": 60,
+    "username": "unibafzaal@gmail.com",
+    "imageUrl": "https://example.com/banana.jpg"
+  }
+]

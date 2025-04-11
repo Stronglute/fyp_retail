@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Fresh Market 1",
+    "category": "Organic Produce, Dairy, Bakery",
+    "rating": 4.5,
+    "reviews": 120,
+    "imageUrl": "https://example.com/store1.jpg"
+  },
+  {
+    "name": "Green Grocers",
+    "category": "Fresh Vegetables, Fruits",
+    "rating": 4.2,
+    "reviews": 85,
+    "imageUrl": "https://example.com/store2.jpg"
+  },
+  {
+    "name": "Daily Dairy",
+    "category": "Milk, Cheese, Butter",
+    "rating": 4.7,
+    "reviews": 150,
+    "imageUrl": "https://example.com/store3.jpg"
+  },
+  {
+    "name": "Bakery Bliss",
+    "category": "Bread, Cakes, Pastries",
+    "rating": 4.3,
+    "reviews": 90,
+    "imageUrl": "https://example.com/store4.jpg"
+  }
+]

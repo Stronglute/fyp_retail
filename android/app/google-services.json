@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "662704634458",
+    "project_id": "retailmatrix-2f981",
+    "storage_bucket": "retailmatrix-2f981.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:662704634458:android:822f4e8436ddb5b1743663",
+        "android_client_info": {
+          "package_name": "com.example.bill_ease"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5g5sY0udNfEaTJ4qRop5WNA8WxqNfOWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:662704634458:android:4520efe3e79eda78743663",
+        "android_client_info": {
+          "package_name": "com.example.fyp_retail"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5g5sY0udNfEaTJ4qRop5WNA8WxqNfOWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
