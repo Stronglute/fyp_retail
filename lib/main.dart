@@ -1,15 +1,13 @@
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'app.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:fyp_retail/services/product_repository.dart';
-///import 'package:fyp_retail/utils//upload_service.dart';
-import 'package:fyp_retail/utils/addinventory.dart';
-
-
 
 void main() async {
+  // Clear any existing cache before Firestore is used:
+  //await FirebaseFirestore.instance.clearPersistence();
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
@@ -17,8 +15,9 @@ void main() async {
   //await uploadJsonToFirestore();
 
   runApp(
-    ProviderScope( // ✅ This enables Riverpod providers globally
-        child: GroceryHubApp(),
+    ProviderScope(
+      // ✅ This enables Riverpod providers globally
+      child: GroceryHubApp(),
     ),
   );
 }

@@ -1,41 +1,48 @@
+// lib/models/store_model.dart
+
 class Store {
   final String id;
-  final String name;
   final String category;
+  final String imageUrl;
+  final String name;
   final double rating;
   final int reviews;
-  final String imageUrl;
+  final String username;
+  final String fbPageId;
+  final String fbAccessToken;
 
   Store({
     required this.id,
-    required this.name,
     required this.category,
+    required this.imageUrl,
+    required this.name,
     required this.rating,
     required this.reviews,
-    required this.imageUrl,
+    required this.username,
+    this.fbPageId = '',
+    this.fbAccessToken = '',
   });
 
-  // Convert Firestore Document to Store Model
-  factory Store.fromMap(String id, Map<String, dynamic> data) {
-    return Store(
-      id: id,
-      name: data['name'] ?? '',
-      category: data['category'] ?? '',
-      rating: (data['rating'] ?? 0).toDouble(),
-      reviews: data['reviews'] ?? 0,
-      imageUrl: data['imageUrl'] ?? '',
-    );
-  }
+  Map<String, dynamic> toMap() => {
+    'category': category,
+    'imageUrl': imageUrl,
+    'name': name,
+    'rating': rating,
+    'reviews': reviews,
+    'username': username,
+    'fbPageId': fbPageId,
+    'fbAccessToken': fbAccessToken,
+  };
 
-  // Convert Store Model to Map for Firestore
-  Map<String, dynamic> toMap() {
-    return {
-      'name': name,
-      'category': category,
-      'rating': rating,
-      'reviews': reviews,
-      'imageUrl': imageUrl,
-    };
-  }
+  factory Store.fromMap(String id, Map<String, dynamic> m) => Store(
+    id: id,
+    category: m['category'],
+    imageUrl: m['imageUrl'],
+    name: m['name'],
+    rating: (m['rating'] as num).toDouble(),
+    reviews: m['reviews'] as int,
+    username: m['username'],
+    fbPageId: m['fbPageId'] ?? '',
+    fbAccessToken: m['fbAccessToken'] ?? '',
+  );
 }
-

@@ -3,6 +3,8 @@ import 'package:fyp_retail/screens/home_screen.dart';
 import 'package:fyp_retail/screens/settings_screen_grocery.dart';
 
 class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
+
   @override
   _MainScreenState createState() => _MainScreenState();
 }
@@ -10,10 +12,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
-  final List<Widget> _screens = [
-    StoreListingPage(),
-    SettingsScreen(),
-  ];
+  final List<Widget> _screens = [StoreListingPage(), SettingsScreen()];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -32,7 +31,10 @@ class _MainScreenState extends State<MainScreen> {
         onTap: _onItemTapped,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.store), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: "Settings",
+          ),
         ],
       ),
     );

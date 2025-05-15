@@ -3,20 +3,26 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../services/order_service.dart';
 
 class OrderStoreScreen extends ConsumerWidget {
+  const OrderStoreScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final orderList = ref.watch(orderServiceProvider).getOrders();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Orders', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
+        title: Text(
+          'Orders',
+          style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Colors.white,
         elevation: 1,
       ),
       body: StreamBuilder<List<Map<String, dynamic>>>(
         stream: orderList,
         builder: (context, snapshot) {
-          if (!snapshot.hasData) return Center(child: CircularProgressIndicator());
+          if (!snapshot.hasData)
+            return Center(child: CircularProgressIndicator());
 
           final orders = snapshot.data!;
           if (orders.isEmpty) return Center(child: Text("No orders found"));
@@ -28,11 +34,17 @@ class OrderStoreScreen extends ConsumerWidget {
               final order = orders[index];
               return Card(
                 elevation: 2,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: ListTile(
                   title: Text("Order #${order['id']}"),
-                  subtitle: Text("Total: \$${order['totalAmount'].toStringAsFixed(2)}"),
-                  trailing: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+                  subtitle: Text("Total: \$${order['totalAmount']}"),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 16,
+                    color: Colors.grey,
+                  ),
                   onTap: () {
                     showDialog(
                       context: context,
@@ -41,12 +53,30 @@ class OrderStoreScreen extends ConsumerWidget {
                           title: Text("Order Details"),
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
-                            children: order['products'].map<Widget>((product) {
-                              return ListTile(
-                                title: Text(product['name']),
-                                subtitle: Text("\$${product['price']}"),
-                              );
-                            }).toList(),
+                            children:
+                                order['products'].map<Widget>((product) {
+                                  return ListTile(
+                                    title: Text(product['name']),
+                                    subtitle: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        if (product['isNegotiated'])
+                                          Text(
+                                            "Original: \$${product['basePrice'].toStringAsFixed(2)}",
+                                            style: TextStyle(
+                                              decoration:
+                                                  TextDecoration.lineThrough,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                        Text(
+                                          "\$${product['price'].toStringAsFixed(2)}",
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }).toList(),
                           ),
                           actions: [
                             TextButton(

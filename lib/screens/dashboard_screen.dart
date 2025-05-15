@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fyp_retail/widgets/drawer.dart';
 
-
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
 
@@ -27,10 +26,30 @@ class DashboardScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildStatCard('Total Revenue', '\$45,231.89', '+20.1% from last month', Icons.attach_money),
-            _buildStatCard('Sales', '+2350', '+10.1% from last month', Icons.shopping_cart),
-            _buildStatCard('Products', '124', '+12 new products added', Icons.inventory),
-            _buildStatCard('Customers', '573', '+18 new customers', Icons.people),
+            _buildStatCard(
+              'Total Revenue',
+              '\$45,231.89',
+              '+20.1% from last month',
+              Icons.attach_money,
+            ),
+            _buildStatCard(
+              'Sales',
+              '+2350',
+              '+10.1% from last month',
+              Icons.shopping_cart,
+            ),
+            _buildStatCard(
+              'Products',
+              '124',
+              '+12 new products added',
+              Icons.inventory,
+            ),
+            _buildStatCard(
+              'Customers',
+              '573',
+              '+18 new customers',
+              Icons.people,
+            ),
             const SizedBox(height: 16),
             _buildRecentSalesSection(),
           ],
@@ -39,7 +58,12 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildStatCard(String title, String value, String subtitle, IconData icon) {
+  Widget _buildStatCard(
+    String title,
+    String value,
+    String subtitle,
+    IconData icon,
+  ) {
     return Card(
       color: Colors.black87,
       margin: const EdgeInsets.symmetric(vertical: 6),
@@ -53,9 +77,22 @@ class DashboardScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title, style: const TextStyle(color: Colors.white, fontSize: 16)),
-                  Text(value, style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
-                  Text(subtitle, style: const TextStyle(color: Colors.green, fontSize: 12)),
+                  Text(
+                    title,
+                    style: const TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                  Text(
+                    value,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    subtitle,
+                    style: const TextStyle(color: Colors.green, fontSize: 12),
+                  ),
                 ],
               ),
             ),
@@ -74,7 +111,10 @@ class DashboardScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Recent Sales', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              Text(
+                'Recent Sales',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
               TextButton(
                 onPressed: null, // Implement "View All" navigation
                 child: Row(
@@ -87,7 +127,10 @@ class DashboardScreen extends StatelessWidget {
             ],
           ),
         ),
-        const Text("Today's sales transactions", style: TextStyle(color: Colors.grey)),
+        const Text(
+          "Today's sales transactions",
+          style: TextStyle(color: Colors.grey),
+        ),
         const SizedBox(height: 8),
         _buildRecentSalesTable(),
       ],
@@ -96,8 +139,18 @@ class DashboardScreen extends StatelessWidget {
 
   Widget _buildRecentSalesTable() {
     final sales = [
-      {'id': 'ORD-001', 'customer': 'John Smith', 'status': 'Completed', 'amount': '\$125.99'},
-      {'id': 'ORD-002', 'customer': 'Sarah Johnson', 'status': 'Processing', 'amount': '\$42.50'},
+      {
+        'id': 'ORD-001',
+        'customer': 'John Smith',
+        'status': 'Completed',
+        'amount': '\$125.99',
+      },
+      {
+        'id': 'ORD-002',
+        'customer': 'Sarah Johnson',
+        'status': 'Processing',
+        'amount': '\$42.50',
+      },
     ];
 
     return Container(
@@ -109,12 +162,20 @@ class DashboardScreen extends StatelessWidget {
         headingRowHeight: 36,
         dataRowHeight: 48,
         columnSpacing: 12,
-        headingRowColor: MaterialStateProperty.all(Colors.black54),
+        headingRowColor: WidgetStateProperty.all(Colors.black54),
         columns: const [
-          DataColumn(label: Text('Order ID', style: TextStyle(color: Colors.white))),
-          DataColumn(label: Text('Customer', style: TextStyle(color: Colors.white))),
-          DataColumn(label: Text('Status', style: TextStyle(color: Colors.white))),
-          DataColumn(label: Text('Amount', style: TextStyle(color: Colors.white))),
+          DataColumn(
+            label: Text('Order ID', style: TextStyle(color: Colors.white)),
+          ),
+          DataColumn(
+            label: Text('Customer', style: TextStyle(color: Colors.white)),
+          ),
+          DataColumn(
+            label: Text('Status', style: TextStyle(color: Colors.white)),
+          ),
+          DataColumn(
+            label: Text('Amount', style: TextStyle(color: Colors.white)),
+          ),
         ],
         rows: sales.map((sale) => _buildRecentSalesRow(sale)).toList(),
       ),
@@ -124,10 +185,16 @@ class DashboardScreen extends StatelessWidget {
   DataRow _buildRecentSalesRow(Map<String, String> sale) {
     return DataRow(
       cells: [
-        DataCell(Text(sale['id']!, style: const TextStyle(color: Colors.white))),
-        DataCell(Text(sale['customer']!, style: const TextStyle(color: Colors.white))),
+        DataCell(
+          Text(sale['id']!, style: const TextStyle(color: Colors.white)),
+        ),
+        DataCell(
+          Text(sale['customer']!, style: const TextStyle(color: Colors.white)),
+        ),
         DataCell(_buildStatusChip(sale['status']!)),
-        DataCell(Text(sale['amount']!, style: const TextStyle(color: Colors.white))),
+        DataCell(
+          Text(sale['amount']!, style: const TextStyle(color: Colors.white)),
+        ),
       ],
     );
   }
@@ -161,4 +228,3 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 }
-

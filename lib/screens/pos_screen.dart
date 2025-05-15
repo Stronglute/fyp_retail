@@ -47,11 +47,12 @@ class _POSScreenState extends ConsumerState<POSScreen> {
             child: productsStream.when(
               data: (productList) {
                 // Assuming productList is a List<Map<String, dynamic>>
-                final products = productList.map((map) {
-                  // Retrieve the id from the map (adjust this if your data stores id differently)
-                  final id = map['id'];
-                  return Product.fromMap(id, map);
-                }).toList();
+                final products =
+                    productList.map((map) {
+                      // Retrieve the id from the map (adjust this if your data stores id differently)
+                      final id = map['id'];
+                      return Product.fromMap(id, map);
+                    }).toList();
 
                 return GridView.builder(
                   padding: const EdgeInsets.all(8),
@@ -86,8 +87,9 @@ class _POSScreenState extends ConsumerState<POSScreen> {
                               ),
                             ),
                             Padding(
-                              padding:
-                              const EdgeInsets.symmetric(horizontal: 8),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                              ),
                               child: Text(
                                 '\$${product.price.toStringAsFixed(2)}',
                                 style: const TextStyle(color: Colors.green),
@@ -104,10 +106,9 @@ class _POSScreenState extends ConsumerState<POSScreen> {
                   },
                 );
               },
-              loading: () =>
-              const Center(child: CircularProgressIndicator()),
-              error: (error, stackTrace) =>
-                  Center(child: Text('Error: $error')),
+              loading: () => const Center(child: CircularProgressIndicator()),
+              error:
+                  (error, stackTrace) => Center(child: Text('Error: $error')),
             ),
           ),
           _buildCartSummary(),
@@ -125,46 +126,58 @@ class _POSScreenState extends ConsumerState<POSScreen> {
           const Text(
             'Current Order',
             style: TextStyle(
-                fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
           if (cart.isEmpty)
             Column(
               children: const [
                 Icon(Icons.shopping_cart, size: 50, color: Colors.grey),
-                Text('Your cart is empty',
-                    style: TextStyle(color: Colors.grey)),
-                Text('Add products to get started',
-                    style: TextStyle(color: Colors.grey)),
+                Text(
+                  'Your cart is empty',
+                  style: TextStyle(color: Colors.grey),
+                ),
+                Text(
+                  'Add products to get started',
+                  style: TextStyle(color: Colors.grey),
+                ),
               ],
             )
           else
             Column(
-              children: cart.map((product) {
-                return ListTile(
-                  title: Text(product.name,
-                      style: const TextStyle(color: Colors.white)),
-                  subtitle: Text(
-                    '\$${product.price.toStringAsFixed(2)} x ${product
-                        .quantity}',
-                    style: const TextStyle(color: Colors.white70),
-                  ),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                        icon: const Icon(Icons.remove, color: Colors.white),
-                        onPressed: () => _updateProductQuantity(product, -1),
+              children:
+                  cart.map((product) {
+                    return ListTile(
+                      title: Text(
+                        product.name,
+                        style: const TextStyle(color: Colors.white),
                       ),
-                      Text(product.quantity.toString(),
-                          style: const TextStyle(color: Colors.white)),
-                      IconButton(
-                        icon: const Icon(Icons.add, color: Colors.white),
-                        onPressed: () => _updateProductQuantity(product, 1),
+                      subtitle: Text(
+                        '\$${product.price.toStringAsFixed(2)} x ${product.quantity}',
+                        style: const TextStyle(color: Colors.white70),
                       ),
-                    ],
-                  ),
-                );
-              }).toList(),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.remove, color: Colors.white),
+                            onPressed:
+                                () => _updateProductQuantity(product, -1),
+                          ),
+                          Text(
+                            product.quantity.toString(),
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.add, color: Colors.white),
+                            onPressed: () => _updateProductQuantity(product, 1),
+                          ),
+                        ],
+                      ),
+                    );
+                  }).toList(),
             ),
           const Divider(color: Colors.grey),
           _buildPriceRow('Subtotal', subtotal),
@@ -173,10 +186,11 @@ class _POSScreenState extends ConsumerState<POSScreen> {
           const SizedBox(height: 10),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-                minimumSize: const Size(double.infinity, 50)),
+              minimumSize: const Size(double.infinity, 50),
+            ),
             onPressed: cart.isEmpty ? null : _checkout,
             child: const Text('Checkout'),
-          )
+          ),
         ],
       ),
     );
@@ -188,14 +202,20 @@ class _POSScreenState extends ConsumerState<POSScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: isBold ? FontWeight.bold : FontWeight.normal)),
-          Text('\$${value.toStringAsFixed(2)}',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: isBold ? FontWeight.bold : FontWeight.normal)),
+          Text(
+            label,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+            ),
+          ),
+          Text(
+            '\$${value.toStringAsFixed(2)}',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+            ),
+          ),
         ],
       ),
     );
@@ -206,8 +226,9 @@ class _POSScreenState extends ConsumerState<POSScreen> {
     setState(() {
       final index = cart.indexWhere((p) => p.sku == product.sku);
       if (index != -1) {
-        final updatedProduct =
-        cart[index].copyWith(quantity: cart[index].quantity + 1);
+        final updatedProduct = cart[index].copyWith(
+          quantity: cart[index].quantity + 1,
+        );
         cart[index] = updatedProduct;
       } else {
         cart.add(product.copyWith(quantity: 1));
@@ -243,17 +264,19 @@ class _POSScreenState extends ConsumerState<POSScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                    "Items:", style: TextStyle(fontWeight: FontWeight.bold)),
+                  "Items:",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 const SizedBox(height: 8),
                 // Display each cart item with its quantity and line total
-                ...cart.map((item) =>
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 2),
-                      child: Text(
-                        "${item.name} x${item.quantity} - \$${(item.price *
-                            item.quantity).toStringAsFixed(2)}",
-                      ),
-                    )),
+                ...cart.map(
+                  (item) => Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 2),
+                    child: Text(
+                      "${item.name} x${item.quantity} - \$${(item.price * item.quantity).toStringAsFixed(2)}",
+                    ),
+                  ),
+                ),
                 const Divider(),
                 _buildPriceRow('Subtotal', subtotal),
                 _buildPriceRow('Tax (8%)', tax),
@@ -278,7 +301,8 @@ class _POSScreenState extends ConsumerState<POSScreen> {
                 Navigator.pop(context); // Dismiss the dialog.
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                      content: Text("Order submitted successfully!")),
+                    content: Text("Order submitted successfully!"),
+                  ),
                 );
                 setState(() {
                   cart.clear();
@@ -292,6 +316,3 @@ class _POSScreenState extends ConsumerState<POSScreen> {
     );
   }
 }
-
-
-

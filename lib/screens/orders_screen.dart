@@ -6,7 +6,7 @@ import '../providers/order_provider.dart';
 import 'package:fyp_retail/widgets/drawer.dart';
 
 class OrdersScreen extends ConsumerWidget {
-  const OrdersScreen({Key? key}) : super(key: key);
+  const OrdersScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -30,11 +30,12 @@ class OrdersScreen extends ConsumerWidget {
             itemBuilder: (context, index) {
               final order = orders[index];
               // Format timestamp if available
-              final timestamp = order['timestamp'] != null
-                  ? DateFormat.yMMMd()
-                  .add_jm()
-                  .format((order['timestamp'] as Timestamp).toDate())
-                  : "No date";
+              final timestamp =
+                  order['timestamp'] != null
+                      ? DateFormat.yMMMd().add_jm().format(
+                        (order['timestamp'] as Timestamp).toDate(),
+                      )
+                      : "No date";
               return Card(
                 margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: ExpansionTile(
@@ -56,8 +57,9 @@ class OrdersScreen extends ConsumerWidget {
                           ...List<Widget>.from(
                             (order['products'] as List<dynamic>).map((product) {
                               return Padding(
-                                padding:
-                                const EdgeInsets.symmetric(vertical: 4.0),
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 4.0,
+                                ),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -78,12 +80,13 @@ class OrdersScreen extends ConsumerWidget {
                                     Expanded(
                                       child: Column(
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             product["name"],
                                             style: const TextStyle(
-                                                fontWeight: FontWeight.bold),
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
                                           const SizedBox(height: 4),
                                           Text(
@@ -128,22 +131,26 @@ class OrdersScreen extends ConsumerWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Subtotal',
-                                  style:
-                                  TextStyle(color: Colors.grey[600])),
                               Text(
-                                  '\$${(order["subtotal"] as num).toStringAsFixed(2)}'),
+                                'Subtotal',
+                                style: TextStyle(color: Colors.grey[600]),
+                              ),
+                              Text(
+                                '\$${(order["subtotal"] as num).toStringAsFixed(2)}',
+                              ),
                             ],
                           ),
                           const SizedBox(height: 8),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Tax',
-                                  style:
-                                  TextStyle(color: Colors.grey[600])),
                               Text(
-                                  '\$${(order["tax"] as num).toStringAsFixed(2)}'),
+                                'Tax',
+                                style: TextStyle(color: Colors.grey[600]),
+                              ),
+                              Text(
+                                '\$${(order["tax"] as num).toStringAsFixed(2)}',
+                              ),
                             ],
                           ),
                           const Divider(height: 24),
@@ -170,6 +177,25 @@ class OrdersScreen extends ConsumerWidget {
                         ],
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(
+                              context,
+                              '/addstore',
+                              arguments: {'order': order},
+                            );
+                          },
+                          child: const Text('View Invoice'),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               );
@@ -177,8 +203,7 @@ class OrdersScreen extends ConsumerWidget {
           );
         },
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (error, stackTrace) =>
-            Center(child: Text("Error: $error")),
+        error: (error, stackTrace) => Center(child: Text("Error: $error")),
       ),
     );
   }

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'utils/theme.dart';
 import 'app_router.dart';
-import 'package:fyp_retail/screens/main_screen.dart';
-
 
 // class POSApp extends StatelessWidget {
 //   const POSApp({super.key});
@@ -20,10 +18,9 @@ import 'package:fyp_retail/screens/main_screen.dart';
 //   }
 // }
 
-
-
-
 class GroceryHubApp extends StatelessWidget {
+  const GroceryHubApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,5 +34,3 @@ class GroceryHubApp extends StatelessWidget {
     );
   }
 }
-
-
